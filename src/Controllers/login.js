@@ -26,9 +26,15 @@ const login = async (req, res) => {
       expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000),
       path: "/"
     }
-console.log("entró");
 
-    res.json({ token, user, cookie })
+res.cookie("token", token, {
+  httpOnly: true,
+  secure: process.env.NODE_ENV === "production", // Solo HTTPS en producción
+  sameSite: "Strict",
+  expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000),
+  path: "/"
+});
+   res.json({ user });
   } catch (error) {
     console.error("ERROR POST /post:", error);
   }

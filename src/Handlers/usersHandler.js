@@ -26,16 +26,6 @@ const postUsersHandler = async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 };
-// const loginHandler = async (req, res) => {
-//   const { userName, password } = req.query;
-//   try {
-//     const response = await login(userName, password);
-//     res.status(200).json(response);
-
-//   } catch (error) {
-//     res.status(400).json({ error: error.message });
-//   }
-// }
 
 module.exports = {
   getUsersHandler,
